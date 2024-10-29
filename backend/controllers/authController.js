@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 // Register user
 exports.registerUser = async (req, res) => {
-    const { name, email, password } = req.body; // No role field
+    const { name, email, password } = req.body; 
     try {
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -12,7 +12,7 @@ exports.registerUser = async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ name, email, password: hashedPassword }); // Only name, email, and password
+        const newUser = new User({ name, email, password: hashedPassword }); 
         await newUser.save();
 
         res.status(201).json({ message: 'User registered successfully' });
