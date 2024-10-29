@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Button, TextField, Box, Alert, Typography, InputAdornment } from '@mui/material';
 import axios from '../utils/api';
 import { Email, Lock, Person } from '@mui/icons-material';
+import './styles/RegisterForm.css';
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const RegisterForm = () => {
               label="Name"
               variant="outlined"
               fullWidth
+              className='input-field'
               margin="normal"
               value={name}
               onChange={(e) => setName(e.target.value)}

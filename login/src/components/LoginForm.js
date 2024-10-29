@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button, TextField, Box, Alert, FormControlLabel, Checkbox, Typography, InputAdornment } from '@mui/material';
-import axios from '../utils/api'; // Make sure this points to your configured axios instance
+import axios from '../utils/api';
 import useAuthStore from '../store/authStore';
 import './styles/LoginForm.css';
-
 import { Email, Lock } from '@mui/icons-material';
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const { login } = useAuthStore();
+
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -25,8 +26,8 @@ const LoginForm = () => {
       const response = await axios.post('/login', { email, password });
       const { token } = response.data;
 
-      // Save the token and update auth state
-      login(token);
+      
+      login({ token, email }); 
       setSuccess('Login successful!');
       navigate('/home');
 
